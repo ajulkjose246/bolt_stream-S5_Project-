@@ -1,0 +1,29 @@
+
+.container {
+    margin-top: 2% !important;
+}
+
+.usr_pro_pic {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+a{
+    text-decoration: none;
+    color: gray;
+}
+.edit_img{
+    font-size: 32px;
+    position: absolute;
+    margin: 43%;
+    margin-left: 80%;
+
+}.btn-info{
+    margin:3%;
+}
+.error{
+    color:rgb(255, 0, 0);
+    margin-left: 25%;
+}

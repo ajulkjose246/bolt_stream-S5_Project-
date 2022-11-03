@@ -1,0 +1,87 @@
+body{
+    background: rgb(12,10,57);
+    background: radial-gradient(circle, rgba(12,10,57,1) 100%, rgba(0,212,255,1) 100%);
+;
+}
+.movie-stream-div {
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+    margin: 5%;
+    height: 500px;
+}
+
+.toggle-top-bar {
+    visibility: hidden !important;
+}
+
+.movie-img {
+    border-style: solid;
+    border-color: white;
+    border-radius: 5px;
+}
+
+.movie-img img {
+    width: 100%;
+}
+
+.movie-details {
+    color: white;
+}
+
+.movie-name {
+    font-weight: 500;
+    font-size: x-large;
+    text-align: center;
+}
+
+
+
+.movie-details-row {
+    margin-bottom: 5%;
+}
+
+.servers {
+    text-align: center;
+    margin-bottom: 5%;
+    margin-top: -3%;
+}
+
+.imdb_rating {
+    color: yellow;
+}
+
+#movie_trailer {
+    color: white;
+    font-weight: 500;
+    margin-right: 10px;
+}
+
+.bi-star-fill {
+    color: yellow;
+}
+a{
+    text-decoration: none;
+}
+
+.log-btn {
+    font-family: "Raleway", sans-serif;
+    font-weight: 500;
+    font-size: 14px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 12px 32px;
+    border-radius: 50px;
+    transition: 0.5s;
+    line-height: 1;
+    margin: 10px;
+    color: #fff;
+    -webkit-animation-delay: 0.8s;
+    animation-delay: 0.8s;
+    border: 2px solid #f82249;
+  }
+  
+  .log-btn:hover {
+    background: #f82249;
+    color: #fff;
+  }
