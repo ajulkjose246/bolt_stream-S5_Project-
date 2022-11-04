@@ -11,7 +11,9 @@ error_reporting(E_ERROR | E_PARSE);
 
   <title>Bolt Stream</title>
   <!-- CSS only -->
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="./bootstrap/css/bootstrap-grid.min.css">
+
   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 
 
@@ -124,14 +126,14 @@ if ($user_id > 0) {
               </div>
             </div>
 
-            <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="col-sm-6 col-md-6 col-lg-3 delete_movies_btn">
               <div class="card-counter btns danger">
                 <i class="fa fa-trash-o"></i>
                 <span class="count-name">Delete Movies</span>
               </div>
             </div>
 
-            <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="col-sm-6 col-md-6 col-lg-3 update_movies_btn">
               <div class="card-counter btns success">
                 <i class="fa fa-wrench"></i>
                 <span class="count-name">Update Movies</span>
@@ -162,140 +164,16 @@ if ($user_id > 0) {
             </div>
           </div>
         </div>
-
-        <div class="upld_movies">
-          <div class="row my-5 justify-content-center">
-            <h3>Upload Movies</h3>
-            <div class="cre-acc col-12 col-sm-12 col-lg-6">
-              <form class="row g-3 needs-validation" action="#" method="POST" novalidate>
-                <div class="col-md-12">
-                  <label class="form-label">Movie Name</label>
-                  <input type="text" class="form-control" name="mov_name">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Director</label>
-                  <input type="text" class="form-control" name="mov_dir">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Language</label>
-                  <!-- <input type="text" class="form-control" name="mov_language"> -->
-                  <select class="form-control" name="mov_language">
-                    <option value="english">English</option>
-                    <option value="malayalam">Malayalam</option>
-                    <option value="Tamil">Tamil</option>
-                    <option value="hindi">Hindi</option>
-                  </select>
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Release Date</label>
-                  <input type="date" class="form-control" name="mov_date">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Server Id</label>
-                  <input type="text" class="form-control" name="mov_ser_id">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">Genre</label>
-                  <input type="text" class="form-control" name="mov_genre">
-                </div>
-                <div class="col-md-6">
-                  <label class="form-label">IMDB Rating</label>
-                  <input type="number" class="form-control" name="mov_imdb">
-                </div>
-                <div class="col-md-12">
-                  <label class="form-label">Bio</label>
-                  <textarea class="form-control" name="mov_bio"></textarea>
-                </div>
-                <div class="col-md-12">
-                  <label class="form-label">Image Url</label>
-                  <textarea class="form-control" name="mov_img"></textarea>
-                </div>
-                <div class="col-md-12">
-                  <label class="form-label">Trailer</label>
-                  <textarea class="form-control" name="mov_trailer"></textarea>
-                </div>
-                <div class="col-12">
-                  <button name="upload_btn" class="btn btn-success">Upload</button>
-                  <a href="./admin_panel.php" class="btn btn-primary">Back</a>
-                </div>
-              </form>
-            </div>
-          </div>
-        </div>
-        <div class="disp_mov my-5">
-          <form class="d-flex my-5" action="#" method="POST" role="search">
-            <input class="form-control me-2" id="search_val" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-success" id="search_btn" name="search_btn" type="submit">Search</button>
-          </form>
-          <table class="table table-striped">
-            <tr>
-              <th>Id</th>
-              <th>Name</th>
-              <th>Director</th>
-              <th>Language</th>
-              <th>Date</th>
-              <th>Genre</th>
-              <th>IMDB</th>
-              <th>Server</th>
-              <th>Poster</th>
-              <th>Trailer</th>
-            </tr>
-            <?php
-            if(isset($_POST['search_val'])){
-              $search_mov=$_POST['search_val'];
-            
-            $sql_display_movie = "SELECT* FROM `tbl_movies` WHERE mov_name like '%$search_mov%'";
-            $display_movie_result = mysqli_query($con, $sql_display_movie);
-            while ($display_movie_row = mysqli_fetch_array($display_movie_result)) {
-            ?>
-              <tr>
-                <td><?= $display_movie_row['mov_id'] ?></td>
-                <td><?= $display_movie_row['mov_name'] ?></td>
-                <td><?= $display_movie_row['mov_director'] ?></td>
-                <td><?= $display_movie_row['mov_language'] ?></td>
-                <td><?= $display_movie_row['mov_date'] ?></td>
-                <td><?= $display_movie_row['mov_genre'] ?></td>
-                <td><?= $display_movie_row['mov_imdb'] ?></td>
-                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_server'] ?>" target="_blank">Load</a></td>
-                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_poster'] ?>" target="_blank">Load</a></td>
-                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_trailer'] ?>" target="_blank">Load</a></td>
-              </tr>
-            <?php }} ?>
-          </table>
-          <div class="my-5" style="text-align:center;">
-            <a href="./admin_panel.php" class="btn btn-success">Home</a>
-          </div>
-        </div>
-
       </div>
     </main>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> -->
+    <script src="./js/jquery-3.6.1.min.js"></script>
+    <script src="./bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="./js/admin_panel.js"></script>
 
   </body>
 <?php
-  // movie upload php start
-  if (isset($_POST['upload_btn'])) {
-    $mov_name = $_POST['mov_name'];
-    $mov_dir = $_POST['mov_dir'];
-    $mov_language = $_POST['mov_language'];
-    $mov_date = $_POST['mov_date'];
-    $mov_ser_id = $_POST['mov_ser_id'];
-    $mov_genre = $_POST['mov_genre'];
-    $mov_imdb = $_POST['mov_imdb'];
-    $mov_bio = $_POST['mov_bio'];
-    $mov_img = $_POST['mov_img'];
-    $mov_trailer = $_POST['mov_trailer'];
-    if ($mov_name != null && $mov_dir != null && $mov_language != null && $mov_date != null && $mov_ser_id != null && $mov_genre != null && $mov_bio != null && $mov_img != null && $mov_trailer != null && $mov_imdb != null) {
-      $con = mysqli_connect("localhost", "root", "", "db_bolt_stream") or die("Connection error");
-      $sql = "INSERT INTO `tbl_movies`(`mov_name`, `mov_director`, `mov_language`, `mov_date`, `mov_server`, `mov_genre`, `mov_imdb`, `mov_bio`, `mov_poster`, `mov_trailer`) 
-        VALUES ('$mov_name','$mov_dir','$mov_language','$mov_date','$mov_ser_id','$mov_genre','$mov_imdb','$mov_bio','$mov_img','$mov_trailer')";
-      mysqli_query($con, $sql);
-      echo ("<script>alert('Success')</script>");
-    }
-  }
-  // movie upload php end
 }
 ?>
 

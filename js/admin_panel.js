@@ -1,28 +1,15 @@
 $(document).ready(function () {
-    $(".upld_movies").hide();
-    $(".disp_mov").hide();
     $(".upld_movies_btn").click(function () {
-        $(".home_div").hide();
-        $(".upld_movies").show();
+       window.location.href="./admin_panel/upload_movie.php";
     })
     $(".disp_movies_btn").click(function () {
-        $(".home_div").hide();
-        $(".upld_movies").hide();
-        $(".disp_mov").show();
-
+       window.location.href="./admin_panel/display_movie.php";
     })
-    $("#search_val").keyup(function () {
-        var text = $("#search_val").val();
-        $.ajax({
-            url: './js/display_mov.php',
-            type: 'post',
-            data: {
-                text: text
-            },
-            success: function(data) {
-                var x =data;
-                alert(x);
-            }
-        });
+    $(".delete_movies_btn").click(function () {
+       window.location.href="./admin_panel/delete_movie.php";
     })
+    $(".update_movies_btn").click(function () {
+       window.location.href="./admin_panel/update_movie.php";
+    })
+    
 })
