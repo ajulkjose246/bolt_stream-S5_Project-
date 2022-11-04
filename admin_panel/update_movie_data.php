@@ -49,22 +49,16 @@ if ($user_id > 0) {
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                        <a href="../admin_panel.php" class="nav-link active" aria-current="page">
                             <i class="fa fa-home"></i>
                             <span class="side_text">Home</span>
 
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
-                            <i class="fa fa-users"></i>
-                            <span class="side_text">User Details</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            <i class="fa fa-film"></i>
-                            <span class="side_text">Movie Details</span>
+                        <a href="../index.php" class="nav-link link-dark">
+                            <i class="fa fa-chrome"></i>
+                            <span class="side_text">Web Page</span>
                         </a>
                     </li>
 
@@ -101,10 +95,10 @@ if ($user_id > 0) {
                                     <label class="form-label">Language</label>
                                     <!-- <input type="text" class="form-control" name="mov_language"> -->
                                     <select class="form-control" value="<?= $row['mov_language'] ?>" name="mov_language">
-                                        <option value="english">English</option>
-                                        <option value="malayalam">Malayalam</option>
+                                        <option value="English">English</option>
+                                        <option value="Malayalam">Malayalam</option>
                                         <option value="Tamil">Tamil</option>
-                                        <option value="hindi">Hindi</option>
+                                        <option value="Hindi">Hindi</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6">
@@ -170,7 +164,7 @@ if ($user_id > 0) {
             $sql = "UPDATE `tbl_movies` SET `mov_name`='$mov_name',`mov_director`='$mov_dir',`mov_language`='$mov_language',`mov_date`='$mov_date',`mov_server`='$mov_ser_id',`mov_genre`='$mov_genre',`mov_imdb`='$mov_imdb',`mov_bio`='$mov_bio',`mov_poster`='$mov_img',`mov_trailer`='$mov_trailer' WHERE mov_id='$val'";
             mysqli_query($con, $sql);
             echo ("<script>location.href='../admin_panel/update_movie.php'</script>");
-        }else{
+        } else {
             echo ("<script>alert('Enter full details')</script>");
         }
     }

@@ -50,22 +50,16 @@ if ($user_id > 0) {
                 <hr>
                 <ul class="nav nav-pills flex-column mb-auto">
                     <li class="nav-item">
-                        <a href="#" class="nav-link active" aria-current="page">
+                        <a href="../admin_panel.php" class="nav-link active" aria-current="page">
                             <i class="fa fa-home"></i>
                             <span class="side_text">Home</span>
 
                         </a>
                     </li>
                     <li>
-                        <a href="#" class="nav-link link-dark">
-                            <i class="fa fa-users"></i>
-                            <span class="side_text">User Details</span>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#" class="nav-link link-dark">
-                            <i class="fa fa-film"></i>
-                            <span class="side_text">Movie Details</span>
+                        <a href="../index.php" class="nav-link link-dark">
+                            <i class="fa fa-chrome"></i>
+                            <span class="side_text">Web Page</span>
                         </a>
                     </li>
 
@@ -112,7 +106,7 @@ if ($user_id > 0) {
                                 <td><?= $display_movie_row['mov_date'] ?></td>
                                 <td><?= $display_movie_row['mov_genre'] ?></td>
                                 <td><?= $display_movie_row['mov_imdb'] ?></td>
-                                <td><a class="btn btn-success" href="../admin_panel/update_data.php?id=<?=$display_movie_row['mov_id'] ?>">Update</a></td>
+                                <td><a class="btn btn-success" href="../admin_panel/update_movie_data.php?id=<?= $display_movie_row['mov_id'] ?>">Update</a></td>
                             </tr>
                         <?php }
 

@@ -79,46 +79,40 @@ if ($user_id > 0) {
                     <table class="table table-striped">
                         <tr>
                             <th>Id</th>
-                            <th>Name</th>
-                            <th>Director</th>
-                            <th>Language</th>
-                            <th>Date</th>
-                            <th>Genre</th>
-                            <th>IMDB</th>
-                            <th>Server</th>
-                            <th>Poster</th>
-                            <th>Trailer</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Email</th>
+                            <th>Username</th>
+                            <th>User Type</th>
+                            <th>Profile</th>
                         </tr>
                         <?php
                         if (isset($_POST['search_val'])) {
-                            $search_mov = $_POST['search_val'];
+                            $search_user = $_POST['search_val'];
                         }
                         if (isset($_POST['reset_btn'])) {
                             $search_mov = "";
                         }
-                        $sql_display_movie = "SELECT * FROM `tbl_movies` WHERE mov_name like '%$search_mov%'";
-                        $display_movie_result = mysqli_query($con, $sql_display_movie);
-                        while ($display_movie_row = mysqli_fetch_array($display_movie_result)) {
+                        $sql_display_user = "SELECT * FROM `tbl_usr_details` WHERE usr_fname like '%$search_user%'";
+                        $display_user_result = mysqli_query($con, $sql_display_user);
+                        while ($display_user_row = mysqli_fetch_array($display_user_result)) {
                         ?>
                             <tr>
-                                <td><?= $display_movie_row['mov_id'] ?></td>
-                                <td><?= $display_movie_row['mov_name'] ?></td>
-                                <td><?= $display_movie_row['mov_director'] ?></td>
-                                <td><?= $display_movie_row['mov_language'] ?></td>
-                                <td><?= $display_movie_row['mov_date'] ?></td>
-                                <td><?= $display_movie_row['mov_genre'] ?></td>
-                                <td><?= $display_movie_row['mov_imdb'] ?></td>
-                                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_server'] ?>" target="_blank">Load</a></td>
-                                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_poster'] ?>" target="_blank">Load</a></td>
-                                <td><a class="btn btn-primary" href="<?= $display_movie_row['mov_trailer'] ?>" target="_blank">Load</a></td>
-                            </tr>
-                        <?php }
-
+                                <td><?= $display_user_row['usr_id'] ?></td>
+                                <td><?= $display_user_row['usr_fname'] ?></td>
+                                <td><?= $display_user_row['usr_lname'] ?></td>
+                                <td><?= $display_user_row['usr_email'] ?></td>
+                                <td><?= $display_user_row['usr_username'] ?></td>
+                                <td><?= $display_user_row['usr_type'] ?></td>
+                                <td><a class="btn btn-danger" href="../admin_panel/delete_user_data.php?id=<?= $display_user_row['usr_id'] ?>">Delete</a></td>
+                               </tr>
+                        <?php
+                         }
                         ?>
                     </table>
                     <div class="my-5" style="text-align:center;">
                         <a href="../admin_panel.php" class="btn btn-success">Home</a>
-                        <a href="../admin_panel/display_movie.php" name="reset_btn" class="btn btn-primary">Reset</a>
+                        <a href="../admin_panel/delete_user.php" name="reset_btn" class="btn btn-primary">Reset</a>
                     </div>
                 </div>
 
@@ -134,21 +128,5 @@ if ($user_id > 0) {
 <?php
 }
 ?>
-<!-- <script>
-    $("#search_btn").click(function () {
-        var text = $("#search_val").val();
-        $.ajax({
-            url: '../js/display_mov.php',
-            type: 'post',
-            data: {
-                text: text
-            },
-            success: function(data) {
-                var x =data;
-                alert(x);
-            }
-        });
-    })
-</script> -->
 
 </html>

@@ -50,22 +50,16 @@ if ($user_id > 0) {
         <hr>
         <ul class="nav nav-pills flex-column mb-auto">
           <li class="nav-item">
-            <a href="#" class="nav-link active" aria-current="page">
+            <a href="./admin_panel.php" class="nav-link active" aria-current="page">
               <i class="fa fa-home"></i>
               <span class="side_text">Home</span>
 
             </a>
           </li>
           <li>
-            <a href="#" class="nav-link link-dark">
-              <i class="fa fa-users"></i>
-              <span class="side_text">User Details</span>
-            </a>
-          </li>
-          <li>
-            <a href="#" class="nav-link link-dark">
-              <i class="fa fa-film"></i>
-              <span class="side_text">Movie Details</span>
+            <a href="./index.php" class="nav-link link-dark">
+              <i class="fa fa-chrome"></i>
+              <span class="side_text">Web Page</span>
             </a>
           </li>
 
@@ -142,24 +136,17 @@ if ($user_id > 0) {
           </div>
           <div class="row my-5">
             <h4 class="d-flex justify-content-start my-2"><b>User</b></h4>
-            <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="col-sm-6 col-md-6 col-lg-3 display_user_btn">
               <div class="card-counter btns primary">
                 <i class="fa fa-television"></i>
                 <span class="count-name">Display Users</span>
               </div>
             </div>
 
-            <div class="col-sm-6 col-md-6 col-lg-3">
+            <div class="col-sm-6 col-md-6 col-lg-3 delete_user_btn">
               <div class="card-counter btns danger">
                 <i class="fa fa-trash-o"></i>
                 <span class="count-name">Delete User</span>
-              </div>
-            </div>
-
-            <div class="col-sm-6 col-md-6 col-lg-3">
-              <div class="card-counter btns success">
-                <i class="fa fa-wrench"></i>
-                <span class="count-name">Update User</span>
               </div>
             </div>
           </div>

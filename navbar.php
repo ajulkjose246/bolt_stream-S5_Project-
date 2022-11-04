@@ -20,6 +20,9 @@
           </ul>
         </li>
       </ul>
+      <form class="d-flex mx-5" role="search">
+      <a href="./movie_search.php" class="btn btn-outline-primary">Search <i class="bi bi-search" style="color:blue ;"></i></a>
+      </form>
       <form action="#" method="POST">
         <a href="signin.php" class="log-btn scrollto">Login</a>
         <div class="profile-menu">
