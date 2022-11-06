@@ -43,6 +43,9 @@ error_reporting(E_ERROR | E_PARSE);
                         <li class="nav-item">
                             <a class="nav-link" aria-current="page" href="index.php">Home</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="./movie_watch_later.php">Watch Later</a>
+                        </li>
                     </ul>
                     <form action="#" method="POST">
                         <a href="signin.php" class="log-btn scrollto">Login</a>
@@ -89,38 +92,59 @@ error_reporting(E_ERROR | E_PARSE);
         </div>
         <div class="container">
 
-            <div class="row movie-details-row">
-                <div class="col-4 col-sm-2">
-                    <div class="movie-img">
-                        <img id="image-1" src="<?= $row['mov_poster'] ?>" alt="">
+            <form action="#" method="POST">
+                <div class="row movie-details-row">
+                    <div class="col-4 col-sm-2">
+                        <div class="movie-img">
+                            <img id="image-1" src="<?= $row['mov_poster'] ?>" alt="">
+                        </div>
+                    </div>
+                    <div class="col-8 col-sm-10">
+                        <div class="movie-details">
+                            <span class="movie-name" id="movie_names"><?= $row['mov_name'] ?> <?= $row['mov_language'] ?></span>
+                            <button class="btn btn-outline-primary" name="watch_later_btn"><i class="bi bi-clock"></i> Watch Later</button><br>
+                            <a id="movie_trailer" href="<?= $row['mov_trailer'] ?>" target="_blank">
+                                <i class="bi bi-camera-video-fill"></i> Trailer </a>
+                            <i class="bi bi-star-fill"></i><span class="imdb_rating">IMDB <?= $row['mov_imdb'] ?></span><br>
+
+                            <br><span id="movie_bio"><?= $row['mov_bio'] ?></span><br><br>
+                            <span>
+                                <table>
+                                    <tr>
+                                        <th>Director : </th>
+                                        <td id="movie_director"><?= $row['mov_director'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Genre : </th>
+                                        <td id="movie_Genre"><?= $row['mov_genre'] ?></td>
+                                    </tr>
+                                    <tr>
+                                        <th>Release : </th>
+                                        <td id="movie_Release"><?= $row['mov_date'] ?></td>
+                                    </tr>
+                                </table>
+                                <?php
+                                if (isset($_POST['watch_later_btn'])) {
+                                    $values = $_SESSION['watch_later_id'];
+                                    $movie_ids = explode(" ", $values);
+                                    foreach ($movie_ids as $mov_id) {
+                                        if ($row['mov_id'] == $mov_id) {
+                                            $temp = 1;
+                                        }
+                                    }
+                                    if ($temp == 1) {
+                                        echo ("<script>alert('Already added')</script>");
+                                    } else {
+                                        $_SESSION['watch_later_id'] = $_SESSION['watch_later_id'] . " " . $row['mov_id'];
+                                        echo ("<script>alert('successfully added')</script>");
+                                    }
+                                }
+                                ?>
+                            </span>
+                        </div>
                     </div>
                 </div>
-                <div class="col-8 col-sm-10">
-                    <div class="movie-details">
-                        <span class="movie-name" id="movie_names"><?= $row['mov_name'] ?> <?= $row['mov_language'] ?></span><br>
-                        <a id="movie_trailer" href="<?= $row['mov_trailer'] ?>" target="_blank">
-                            <i class="bi bi-camera-video-fill"></i> Trailer </a>
-                        <i class="bi bi-star-fill"></i><span class="imdb_rating">IMDB <?= $row['mov_imdb'] ?></span><br>
-                        <br><span id="movie_bio"><?= $row['mov_bio'] ?></span><br><br>
-                        <span>
-                            <table>
-                                <tr>
-                                    <th>Director : </th>
-                                    <td id="movie_director"><?= $row['mov_director'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Genre : </th>
-                                    <td id="movie_Genre"><?= $row['mov_genre'] ?></td>
-                                </tr>
-                                <tr>
-                                    <th>Release : </th>
-                                    <td id="movie_Release"><?= $row['mov_date'] ?></td>
-                                </tr>
-                            </table>
-                        </span>
-                    </div>
-                </div>
-            </div>
+            </form>
         </div>
     </section>
 </body>
@@ -142,7 +166,6 @@ if ($user_id > 0) {
     echo ("<script>$('.profile-menu').hide()</script>");
 }
 
-// set movie id in section
 ?>
 
 <!-- JavaScript -->

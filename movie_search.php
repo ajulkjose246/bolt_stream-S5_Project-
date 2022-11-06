@@ -41,6 +41,9 @@ error_reporting(E_ERROR | E_PARSE);
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
+                    <li class="nav-item">
+                        <a class="nav-link" aria-current="page" href="./movie_watch_later.php">Watch Later</a>
+                    </li>
                 </ul>
                 <form action="#" method="POST">
                     <a href="signin.php" class="log-btn scrollto">Login</a>

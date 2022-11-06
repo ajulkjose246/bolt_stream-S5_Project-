@@ -42,31 +42,35 @@ if ($user_id > 0) {
         <main class="d-flex flex-nowrap">
             <!-- <section> -->
             <!-- <h1 class="visually-hidden">Sidebars examples</h1> -->
-            <div class="sidenav d-flex flex-column flex-shrink-0 p-3 bg-light">
-                <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
-                    <i class="fa fa-cogs fa-3x"></i>
-                    <span class="fs-4 side_text"><b>Admin Panel</b></span>
-                </a>
-                <hr>
-                <ul class="nav nav-pills flex-column mb-auto">
-                    <li class="nav-item">
-                        <a href="../admin_panel.php" class="nav-link active" aria-current="page">
-                            <i class="fa fa-home"></i>
-                            <span class="side_text">Home</span>
+            <form action="#" method="POST">
+        <div class="sidenav d-flex flex-column flex-shrink-0 p-3 bg-light">
 
-                        </a>
-                    </li>
-                    <li>
-                        <a href="../index.php" class="nav-link link-dark">
-                            <i class="fa fa-chrome"></i>
-                            <span class="side_text">Web Page</span>
-                        </a>
-                    </li>
+          <a href="#" class="d-flex align-items-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+            <i class="fa fa-cogs fa-3x"></i>
+            <span class="fs-4 side_text"><b>Admin Panel</b></span>
+          </a>
+          <hr>
+          <ul class="nav nav-pills flex-column mb-auto">
+            <li class="nav-item">
+              <a href="../admin_panel.php" class="nav-link active" aria-current="page">
+                <i class="fa fa-home"></i>
+                <span class="side_text">Home</span>
 
-                </ul>
-                <hr>
-                <button class="btn btn-danger">Logout</button>
-            </div>
+              </a>
+            </li>
+            <li>
+              <a href="../index.php" class="nav-link link-dark">
+                <i class="fa fa-chrome"></i>
+                <span class="side_text">Web Page</span>
+              </a>
+            </li>
+
+          </ul>
+          <hr>
+
+          <button class="btn btn-danger" name="log_out_btn">Logout</button>
+        </div>
+      </form>
 
             <div class="page_divider"></div>
 
@@ -78,7 +82,6 @@ if ($user_id > 0) {
                     </form>
                     <table class="table table-striped">
                         <tr>
-                            <th>Id</th>
                             <th>First Name</th>
                             <th>Last Name</th>
                             <th>Email</th>
@@ -97,7 +100,6 @@ if ($user_id > 0) {
                         while ($display_user_row = mysqli_fetch_array($display_user_result)) {
                         ?>
                             <tr>
-                                <td><?= $display_user_row['usr_id'] ?></td>
                                 <td><?= $display_user_row['usr_fname'] ?></td>
                                 <td><?= $display_user_row['usr_lname'] ?></td>
                                 <td><?= $display_user_row['usr_email'] ?></td>
@@ -124,7 +126,15 @@ if ($user_id > 0) {
 
     </body>
 <?php
-}
+if(isset($_POST['log_out_btn'])){
+    session_destroy();
+    unset($_SESSION['usr_id']);
+    $url = "../index.php";
+    echo ("<script>location.href='$url'</script>");
+  }
+}else{
+    echo ("<script>location.href='../index.php'</script>");
+  }
 ?>
 
 </html>

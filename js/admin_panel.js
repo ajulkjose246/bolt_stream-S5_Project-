@@ -17,5 +17,8 @@ $(document).ready(function () {
     $(".delete_user_btn").click(function () {
        window.location.href="./admin_panel/delete_user.php";
     })
+    $(".update_user_btn").click(function () {
+       window.location.href="./admin_panel/update_user_type.php";
+    })
     
 })

@@ -90,7 +90,6 @@ if ($user_id > 0) {
                   <div class="row">
                     <div class="col-sm-12">
                       <a class="btn btn-info edit_data" href="#">Edit</a>
-                      <a class="btn btn-info add_movie" href="./mov_upld.php">Add Movies</a>
                       <a class="btn btn-info admin_panel" href="./admin_panel.php">Admin Panel</a>
                       <button class="btn btn-info update_data" name="update_data" href="#">Update</button>
                       <button class="btn btn-info cancel_btn" href="user_profile.php">Cancel</button>
@@ -119,10 +118,8 @@ if ($user_id > 0) {
   $row = mysqli_fetch_array($result);
   $usr_type = $_SESSION['user_type'];
   if ($usr_type == 1) {
-    echo ("<script>$('.add_movie').show();</script>");
     echo ("<script>$('.admin_panel').show();</script>");
   }else{
-    echo ("<script>$('.add_movie').hide();</script>");
     echo ("<script>$('.admin_panel').hide();</script>");
   }
   $pro_fname = $row['usr_fname'];
@@ -155,14 +152,16 @@ if (isset($_POST['update_data'])) {
   if ($files_img == null) {
     $files_img = $row['usr_pic'];
   }
-  $query2 = "UPDATE `tbl_usr_details` SET `usr_fname`='$usr_fname',`usr_lname`='$usr_lname',`usr_email`='$usr_email',`usr_username`='$usr_username',`usr_pic`='$files_img' WHERE usr_id =$user_id";
-  $query3 = "UPDATE `tbl_usr_login` SET `usr_email`='$usr_email' WHERE id =$user_id";
-  mysqli_query($con, $query2);
-  mysqli_query($con, $query3);
-  $targetdir = "pro_pic/";
-  $file_path = $targetdir . $files_img;
-  move_uploaded_file($_FILES['upld_file']['tmp_name'], $file_path);
-  echo ("<script>location.href='user_profile.php'</script>");
+  if($usr_fname !="" && $usr_lname !="" && $usr_email!="" && $usr_username != ""){
+    $query2 = "UPDATE `tbl_usr_details` SET `usr_fname`='$usr_fname',`usr_lname`='$usr_lname',`usr_email`='$usr_email',`usr_username`='$usr_username',`usr_pic`='$files_img' WHERE usr_id =$user_id";
+    $query3 = "UPDATE `tbl_usr_login` SET `usr_email`='$usr_email' WHERE id =$user_id";
+    mysqli_query($con, $query2);
+    mysqli_query($con, $query3);
+    $targetdir = "pro_pic/";
+    $file_path = $targetdir . $files_img;
+    move_uploaded_file($_FILES['upld_file']['tmp_name'], $file_path);
+    echo ("<script>location.href='user_profile.php'</script>");
+  }
 }
 if (isset($_POST['logout_btn'])) {
   session_destroy();
@@ -172,27 +171,29 @@ if (isset($_POST['logout_btn'])) {
 }
 ?>
 <script>
-  $(".update_data").hide();
-  $(".edit_img").hide();
-  $(".cancel_btn").hide();
-  $(".usr_pro_pic").removeClass("upd_img");
-  $(".edit_data").click(function() {
-    $(".user_fname").prop("disabled", false);
-    $(".user_lname").prop("disabled", false);
-    $(".user_email").prop("disabled", false);
-    $(".user_username").prop("disabled", false);
-    $(".update_data").show();
-    $(".edit_data").hide();
-    $(".usr_pro_pic").addClass("upd_img");
-    $(".edit_img").show();
-    $(".cancel_btn").show();
-    $(".add_movie").hide();
-    $(".admin_panel").hide();
-    $(".logout_btn").hide();
+  $(document).ready(function(){
 
-    $('.upd_img').click(function() {
-      $('#imgupload').trigger('click');
-    });
+    $(".update_data").hide();
+    $(".edit_img").hide();
+    $(".cancel_btn").hide();
+    $(".usr_pro_pic").removeClass("upd_img");
+    $(".edit_data").click(function() {
+      $(".user_fname").prop("disabled", false);
+      $(".user_lname").prop("disabled", false);
+      $(".user_email").prop("disabled", false);
+      $(".user_username").prop("disabled", false);
+      $(".update_data").show();
+      $(".edit_data").hide();
+      $(".usr_pro_pic").addClass("upd_img");
+      $(".edit_img").show();
+      $(".cancel_btn").show();
+      $(".admin_panel").hide();
+      $(".logout_btn").hide();
+  
+      $('.upd_img').click(function() {
+        $('#imgupload').trigger('click');
+      });
+    })
   })
 </script>
 

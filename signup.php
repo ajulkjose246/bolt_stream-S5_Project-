@@ -88,8 +88,8 @@ error_reporting(E_ERROR | E_PARSE);
                                     <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                             <label class="form-label">Profile Pic</label>
-                                            <input type="file" id="pwds" name="files" class="form-control" accept="image/*">
-                                            <label class="form-label error" id="ss"></label>
+                                            <input type="file" id="files" name="files" onchange="return fileValidation()" class="form-control" accept="image/*">
+                                            <label class="form-label error" id="file_er"></label>
                                         </div>
                                     </div>
                                 </div>
@@ -114,7 +114,23 @@ error_reporting(E_ERROR | E_PARSE);
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script src="./js/signup.js"></script>
 
+<script>
+    function fileValidation() {
+        var fileInput =document.getElementById('files');
 
+        var filePath = fileInput.value;
+
+        var allowedExtensions =/(\.jpg|\.jpeg|\.png|\.gif)$/i;
+
+        if (!allowedExtensions.exec(filePath)) {
+            $("#file_er").text("Invalid file type")
+            $("#signup").prop('disabled', true);
+
+            fileInput.value = '';
+            return false;
+        }
+    }
+</script>
 <?php
 if (isset($_POST['sign'])) {
     $fname = $_POST['fname'];

@@ -52,7 +52,7 @@ $(document).ready(function(){
         })
         $("#username").keyup(function () {
             var u_name = $("#username").val();
-            var c_name = /^[a-z.@0-9]{5,}$/i;
+            var c_name = /^[a-z][a-z.@0-9]{5,}$/i;
             r_uname=c_name.test(u_name);
             if (!r_uname) {
                 $("#u_error").text("Enter a valid username");
@@ -74,6 +74,28 @@ $(document).ready(function(){
                         }
                     }
                 });
+            }
+        })
+
+        $("#update_data").click(function () {
+            if (r_fname == true && r_lname == true && r_email == true && r_uname == true) {
+                $("#update_data").prop('disabled', false);
+            }
+            if (!r_fname) {
+                $("#f_error").text("Enter a valid First Name");
+                $("#update_data").prop('disabled', true);
+            }
+            if (!r_lname) {
+                $("#l_error").text("Enter a valid Last Name");
+                $("#update_data").prop('disabled', true);
+            }
+            if (!r_email) {
+                $("#e_errors").text("Enter a valid Last Name");
+                $("#update_data").prop('disabled', true);
+            }
+            if (!r_uname) {
+                $("#e_errorss").text("Enter a valid Email Address");
+                $("#update_data").prop('disabled', true);
             }
         })
         
