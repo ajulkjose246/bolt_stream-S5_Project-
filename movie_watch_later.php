@@ -83,6 +83,7 @@ error_reporting(E_ERROR | E_PARSE);
             <?php
             $con = mysqli_connect("localhost", "root", "", "db_bolt_stream") or die("Connection error");
             $values = $_SESSION['watch_later_id'];
+            // echo"<script>alert('$values')</script>";
             $movie_ids = explode(" ", $values);
             foreach ($movie_ids as $mov_id) {
                 if ($mov_id != null) {
@@ -116,9 +117,9 @@ error_reporting(E_ERROR | E_PARSE);
                                         <th>Release : </th>
                                         <td id="movie_Release"><?= $display_movie_row['mov_date'] ?></td>
                                     </tr>
-                                    <!-- <tr>
-                                        <td><button name="remove_watch" class="my-5 btn btn-success">remove</button></td>
-                                    </tr> -->
+                                    <tr>
+                                        <td><a href="remove_watch_later.php?id=<?=$display_movie_row['mov_id']?>" name="remove_watch" class="my-5 btn btn-danger">remove</a></td>
+                                    </tr>
                                 </table>
                             </div>
                         </div>
@@ -153,7 +154,6 @@ if ($user_id > 0) {
 } else {
     echo ("<script>$('.profile-menu').hide()</script>");
 }
-
 
 ?>
 <script src="js/main.js"></script>

@@ -1,4 +1,5 @@
 <?php
+$user_id = $_SESSION['usr_id'];
 $val = $_GET['id'];
     $con = mysqli_connect("localhost", "root", "", "db_bolt_stream");
     $mysql1 = "DELETE FROM `tbl_usr_details` WHERE usr_id=$val";

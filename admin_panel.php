@@ -71,9 +71,6 @@ if ($user_id > 0) {
           <button class="btn btn-danger" name="log_out_btn">Logout</button>
         </div>
       </form>
-
-      <div class="page_divider"></div>
-
       <div class="container sub_body">
         <div class="home_div">
           <div class="row my-5">
@@ -148,7 +145,7 @@ if ($user_id > 0) {
             </div>
 
             <div class="col-sm-6 col-md-6 col-lg-3 delete_user_btn">
-              <div class="card-counter btns danger">
+              <div class="card-counter btns danger">  
                 <i class="fa fa-trash-o"></i>
                 <span class="count-name">Delete User</span>
               </div>

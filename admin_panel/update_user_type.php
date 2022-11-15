@@ -110,7 +110,11 @@ if ($user_id > 0) {
                                 <td><?= $display_user_row['usr_username'] ?></td>
                                 <td><?= $display_user_row['usr_type'] ?></td>
                                 <?php
-                                if ($display_user_row['usr_type'] == 1) {
+                                if ($user_id == $display_user_row['usr_id']) {?>
+                                    <td><b>Current User</b></td>
+                                    <?php }
+
+                                elseif ($display_user_row['usr_type'] == 1) {
                                 ?>
                                     <td><a class="btn btn-danger" href="../admin_panel/update_user_type_normal.php?id=<?= $display_user_row['usr_id'] ?>">Normal</a></td>
                                 <?php
